@@ -1,4 +1,5 @@
 import userModel from './auth.model.js';
+import redisClient from '../../db/redis.js';
 import { generateToken } from './auth.utils.js';
 
 /**
@@ -119,3 +120,38 @@ export const getMe = async (req, res) =>{
         res.status(500).json({ message: 'Server error' });
     }
 }
+
+/**
+ * @route POST /api/auth/logout
+ */
+export const logoutUser = async (req, res) =>{
+    try{
+        const token = req.cookies.token;
+        if(!token)
+        {
+            return res.status(400).json({ message: 'No token found' });
+        }
+        
+        const remainingTime = req - Math.floor(Date.now() / 1000);
+
+        if(remainingTime <= 0)
+        {
+            res.clearCookie('token');
+            return res.status(400).json({ message: 'Token already expired' });
+        }
+
+        await redisClient.set(token, 'blacklisted', {EX: remainingTime}); // Blacklist token for remaining time
+        
+        res.clearCookie('token',{
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    });
+    res.status(200).json({ message: 'Logout successful' });
+     }catch(error)
+     {
+         console.error('Error logging out user:', error.message);
+         res.status(500).json({ message: 'Server error' });
+     }
+     }
+

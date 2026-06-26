@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'; 
-export const authenticate = (req, res, next) => {
+import redisClient from '../../db/redis.js';
+export const authenticate = async (req, res, next) => {
     try {
         const token = req.cookies.token;
 
@@ -7,6 +8,11 @@ export const authenticate = (req, res, next) => {
             return res.status(401).json({
                 message: "Authentication required",
             });
+        }
+        // Check if the token is blacklisted
+        const blackListedToken = await redisClient.get(token);
+        if (blackListedToken) {
+            return res.status(401).json({ message: "Token has been invalidated" });
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -20,6 +26,7 @@ export const authenticate = (req, res, next) => {
        if(error.name === 'JsonWebTokenError') {
          return res.status(401).json({ message: 'Invalid token' });
        }
+       console.error('Error in authentication middleware:', error.message);
        res.status(500).json({ message: 'Internal server error' });
      }
 };
