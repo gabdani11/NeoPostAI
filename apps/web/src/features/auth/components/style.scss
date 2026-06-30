@@ -1,0 +1,69 @@
+@mixin flex-center($align: center, $justify: center, $direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+.login-form{
+    color: var(--secondary);
+    
+    @include flex-center($direction: column, $align: flex-start);
+
+    .top{
+        margin-bottom: 2rem;
+        .topTitle{
+            font-size: 3rem;
+            font-weight: 400;
+        }
+        .topDesc{
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+        }
+        
+    }
+    form{
+        @include flex-center($direction: column, $align: flex-start);
+        width: 100%;
+
+        input{
+            
+            border: none;
+            outline: none;
+            width: 100%;
+            border-radius: var(--radius-sm);
+            
+        }
+        .inputBox{
+            padding: 0.5rem 0.6rem;
+            @include flex-center($align: center, $justify: space-between);
+            gap: 0.2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            width: 100%;
+            margin-bottom: 0.7rem;
+        }
+        #forgotPassword{
+            font-size: 0.9rem;
+            text-decoration: underline;
+            align-self: flex-end;
+            margin-bottom: 3rem;
+        }
+        .loginBtn{
+            background:var(--primary);
+            color: var(--foreground);
+            width: 100%;
+            font-size: clamp(1rem, 5vw, 2rem);
+            border-radius: var(--radius-md);
+            
+        }
+
+        
+    }
+    .bottom{
+        width: 100%;
+        margin-top: 0.8rem;
+        gap: 0.8rem;
+        @include flex-center($direction: column, $align: center);
+    }
+
+}

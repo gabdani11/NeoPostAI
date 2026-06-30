@@ -1,0 +1,20 @@
+.googleBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    background: linear-gradient(
+    88deg,
+  rgba(243, 68, 55, 0.5) 0%,
+  rgba(254, 192, 7, 0.5) 31%,
+  rgba(68, 160, 70, 0.5) 69%,
+  rgba(68, 138, 255, 0.5) 83%
+      );
+    border-radius: var(--radius-md);
+    svg{
+        font-size: 1.5rem;
+    }
+}
+
