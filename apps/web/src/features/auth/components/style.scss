@@ -4,7 +4,7 @@
     align-items: $align;
     justify-content: $justify;
 }
-.login-form{
+.form{
     color: var(--secondary);
     
     @include flex-center($direction: column, $align: flex-start);
@@ -41,6 +41,9 @@
             border-radius: var(--radius-md);
             width: 100%;
             margin-bottom: 0.7rem;
+            .passwordToggle{
+                cursor: pointer;
+            }
         }
         #forgotPassword{
             font-size: 0.9rem;
@@ -48,7 +51,7 @@
             align-self: flex-end;
             margin-bottom: 3rem;
         }
-        .loginBtn{
+        .submitBtn{
             background:var(--primary);
             color: var(--foreground);
             width: 100%;

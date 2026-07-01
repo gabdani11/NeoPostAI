@@ -2,23 +2,33 @@ import React from 'react'
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import './style.scss'
-import GoogleBtn from './googleLoginBtn/GoogleBtn'
+import GoogleBtn from './googleLoginBtn/GoogleBtn.jsx'
 
-const Login = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false)
+
+
+const Register = () => {
+    const [passwordVisible, setPasswordVisible] = useState(false)
   return (
-    <div className="login-form form">
+    <div className="register-form form">
       <div className="top">
         <img src="/neoposttypo.svg" alt="Logo" />
         <h1 className="topTitle">
-            Welcome Back
+            Create your workspace
         </h1>
         <p className="topDesc">
-            Continue creating and managing <br/>
-            content with AI.
+            Start creating AI-powered social <br/>
+            content in minutes.
         </p>
       </div>
       <form>
+        <label htmlFor="username">Username</label>
+        <div className="usernameBox inputBox">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4z" />
+            </svg>
+            <input type="text" id="username" placeholder="Username" />
+        </div>
         <label htmlFor="email">Email</label>
         <div className="emailBox inputBox">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 22 22">
@@ -53,17 +63,16 @@ const Login = () => {
             </div>
             
 
-        </div>
-        <a href="#" id="forgotPassword">Forgot Password?</a>
+        </div>    
         
-        <button type="submit" className='loginBtn submitBtn'>Login</button>
+        <button type="submit" className='registerBtn submitBtn'>Register</button>
       </form>
       <div className="bottom">
         <label>or</label>
          <GoogleBtn/>
         <p className="registerLabel">
-          Don't have an account?{" "}
-         <Link to="/auth/register" style={{textDecoration:"underline"}}>Register</Link>
+          Already have an account?{" "}
+         <Link to="/auth/login" style={{textDecoration:"underline"}}>Login</Link>
         </p>
       </div>
       
@@ -71,4 +80,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
