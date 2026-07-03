@@ -4,7 +4,11 @@ import Register from '../../features/auth/components/Register'
 import Login from '../../features/auth/components/Login'
 
 
-const router = createBrowserRouter([
+const router = createBrowserRouter([{
+    path: "/",
+    element: <Navigate to="/auth" replace />,
+
+    },
     {
     path: "/auth",
     element: <Auth/>,

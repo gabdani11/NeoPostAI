@@ -1,13 +1,25 @@
 import React from 'react'
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import useAuth from '../hook/UseAuth.jsx'
 import './style.scss'
 import GoogleBtn from './googleLoginBtn/GoogleBtn.jsx'
 
 
 
 const Register = () => {
+    const {registerUser} = useAuth()
+
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
     const [passwordVisible, setPasswordVisible] = useState(false)
+
+    function handleSubmit(e){
+        e.preventDefault()
+        registerUser({username, email, password})
+    }
   return (
     <div className="register-form form">
       <div className="top">
@@ -20,14 +32,14 @@ const Register = () => {
             content in minutes.
         </p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit} className="formBox">
         <label htmlFor="username">Username</label>
         <div className="usernameBox inputBox">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4z" />
             </svg>
-            <input type="text" id="username" placeholder="Username" />
+            <input type="text" id="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <label htmlFor="email">Email</label>
         <div className="emailBox inputBox">
@@ -35,7 +47,7 @@ const Register = () => {
 	            <path d="M0 0h22v22H0z" fill="none" />
 	            <path fill="currentColor" d="M1 5h1V4h18v1h1v13h-1v1H2v-1H1zm2 12h16V9h-1v1h-2v1h-2v1h-2v1h-2v-1H8v-1H6v-1H4V9H3zM19 6H3v1h2v1h2v1h2v1h4V9h2V8h2V7h2z" />
             </svg>
-            <input type="email" id="email" placeholder="Email" />
+            <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         
         <label htmlFor="password">Password</label>
@@ -45,7 +57,7 @@ const Register = () => {
               <path fill="currentColor" d="M5 8h14v2H5zm0 12h14v2H5zM3 10h2v10H3zm16 0h2v10h-2zM7 4h2v4H7zm2-2h6v2H9zm6 2h2v4h-2z" />
             </svg>
 
-            <input type={passwordVisible ? "text" : "password"} id="password" placeholder="Password" />
+            <input type={passwordVisible ? "text" : "password"} id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <div className="passwordToggle" onClick={() => setPasswordVisible(!passwordVisible)}>
               {passwordVisible ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
