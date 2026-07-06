@@ -2,11 +2,14 @@ import {createBrowserRouter, Navigate} from 'react-router-dom'
 import Auth from '../../features/auth/pages/Auth'
 import Register from '../../features/auth/components/Register'
 import Login from '../../features/auth/components/Login'
+import Landing from '../../landing/Landing'
+import AppLayout from '../layouts/AppLayout'
+import Discover from '../../features/auth/discover/Discover'
 
 
 const router = createBrowserRouter([{
     path: "/",
-    element: <Navigate to="/auth" replace />,
+    element: <Landing/>,
 
     },
     {
@@ -27,5 +30,19 @@ const router = createBrowserRouter([{
       },
     ],
   },
+  {
+    path:'/app',
+    element:<AppLayout/>,
+    children:[
+      {
+        index:true,
+        element:<Navigate to='discover' replace/>
+      },
+      {
+        path:'discover',
+        element:<Discover/>
+      }
+    ]
+  }
 ])
 export default router
