@@ -1,8 +1,12 @@
-import { Router } from 'express';
-import { authenticate } from './auth.middleware.js';
-import { registerUser, loginUser, getMe, logoutUser } from './auth.controller.js';
-import { registerValidation, loginValidation } from './auth.validation.js';
-
+import { Router } from "express";
+import { authenticate } from "./auth.middleware.js";
+import {
+  registerUser,
+  loginUser,
+  getMe,
+  logoutUser,
+} from "./auth.controller.js";
+import { registerValidation, loginValidation } from "./auth.validation.js";
 
 const authRouter = Router();
 /**
@@ -10,27 +14,27 @@ const authRouter = Router();
  * @desc Register a new user
  * @access Public
  */
-authRouter.post('/register',registerValidation, registerUser);
+authRouter.post("/register", registerValidation, registerUser);
 
 /**
  * @route POST /api/auth/login
  * @desc Login a user
  * @access Public
  */
-authRouter.post('/login', loginValidation, loginUser);
+authRouter.post("/login", loginValidation, loginUser);
 
 /**
  * @route GET /api/auth/me
  * @desc Get current user
  * @access Private
  */
-authRouter.get('/me', authenticate, getMe);
+authRouter.get("/me", authenticate, getMe);
 
 /**
  * @route POST /api/auth/logout
  * @desc Logout a user
  * @access Private
  */
-authRouter.post('/logout', authenticate, logoutUser);
+authRouter.post("/logout", authenticate, logoutUser);
 
 export default authRouter;
