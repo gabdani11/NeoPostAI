@@ -8,12 +8,12 @@ export function normalizeData(data, provider) {
         title: item.snippet.title,
         text: item.snippet.description,
         url: `https://www.youtube.com/watch?v=${item.id}`,
-        engagement: {
+        metrics: {
           likes: item.statistics.likeCount,
           comments: item.statistics.commentCount,
-          shares: 0, // YouTube API does not provide share count
+          shares: null, // YouTube API does not provide share count
           views: item.statistics.viewCount,
-          upvotes: 0, // YouTube API does not provide upvote count
+          upvotes: null, // YouTube API does not provide upvote count
         },
         metadata: {
           categoryId: item.snippet.categoryId,

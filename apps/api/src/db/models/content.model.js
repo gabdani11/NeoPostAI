@@ -32,12 +32,17 @@ const contentSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    engagement: {
-      likes: { type: Number, default: 0 },
-      comments: { type: Number, default: 0 },
-      shares: { type: Number, default: 0 },
-      views: { type: Number, default: 0 },
-      upvotes: { type: Number, default: 0 },
+    metrics: {
+      likes: { type: Number, default: null },
+      comments: { type: Number, default: null },
+      shares: { type: Number, default: null },
+      views: { type: Number, default: null },
+      upvotes: { type: Number, default: null },
+    },
+    processingStatus: {
+      type: String,
+      enum: ["pending", "processing", "processed", "failed"],
+      default: "pending",
     },
     metadata: { type: mongoose.Schema.Types.Mixed, default: {} },
     createdAtSource: { type: Date, required: true },
@@ -45,6 +50,15 @@ const contentSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-const contextModel = mongoose.model("Content", contentSchema);
+contentSchema.index(
+  {
+    platform: 1,
+    postId: 1,
+  },
+  {
+    unique: true,
+  },
+);
+const contentModel = mongoose.model("Content", contentSchema);
 
-export default contextModel;
+export default contentModel;
