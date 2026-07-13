@@ -1,20 +1,19 @@
-import {createBrowserRouter, Navigate} from 'react-router-dom'
-import Auth from '../../features/auth/pages/Auth'
-import Register from '../../features/auth/components/Register'
-import Login from '../../features/auth/components/Login'
-import Landing from '../../landing/Landing'
-import AppLayout from '../layouts/AppLayout'
-import Discover from '../../features/auth/discover/Discover'
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import Auth from "../../features/auth/pages/Auth";
+import Register from "../../features/auth/components/Register";
+import Login from "../../features/auth/components/Login";
+import Landing from "../../landing/Landing";
+import AppLayout from "../layouts/AppLayout";
+import Discover from "../../features/discover/Discover";
 
-
-const router = createBrowserRouter([{
+const router = createBrowserRouter([
+  {
     path: "/",
-    element: <Landing/>,
-
-    },
-    {
+    element: <Landing />,
+  },
+  {
     path: "/auth",
-    element: <Auth/>,
+    element: <Auth />,
     children: [
       {
         index: true,
@@ -22,27 +21,27 @@ const router = createBrowserRouter([{
       },
       {
         path: "login",
-        element: <Login/>,
+        element: <Login />,
       },
       {
         path: "register",
-        element: <Register/>,
+        element: <Register />,
       },
     ],
   },
   {
-    path:'/app',
-    element:<AppLayout/>,
-    children:[
+    path: "/app",
+    element: <AppLayout />,
+    children: [
       {
-        index:true,
-        element:<Navigate to='discover' replace/>
+        index: true,
+        element: <Navigate to="discover" replace />,
       },
       {
-        path:'discover',
-        element:<Discover/>
-      }
-    ]
-  }
-])
-export default router
+        path: "discover",
+        element: <Discover />,
+      },
+    ],
+  },
+]);
+export default router;
