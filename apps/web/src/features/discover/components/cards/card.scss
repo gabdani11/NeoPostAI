@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0.5rem;
+  background-color: var(--foreground);
+  width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  .top {
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+  .middle {
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.1rem;
+    }
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+    button {
+      background-color: var(--primary);
+      border-radius: var(--radius-sm);
+      color: var(--foreground);
+      padding: 0.2rem 0.5rem;
+    }
+  }
+}
