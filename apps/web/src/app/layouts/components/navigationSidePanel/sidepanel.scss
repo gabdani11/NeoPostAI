@@ -1,5 +1,7 @@
-.sidePanel{
-    color:var(--secondary);
-    border:2px solid var(--border);
-    padding:2rem;
+.sidePanel {
+  color: var(--secondary);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

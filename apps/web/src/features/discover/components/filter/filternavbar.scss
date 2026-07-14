@@ -1,26 +1,27 @@
-.filterNavbar{
-    border: 1px solid red;
-    display: flex;
-    width:fit-content;
-    padding: 0.5rem 0;
-    background-color: rgba(128, 128, 128, 0.38);
-    button{
-        border-right: 1px solid rgba(128, 128, 128, 0.38);
-        padding: 0.5rem 1rem;
-    }
-    .anchor{
-        position:absolute;
-        position-anchor: --some-achor;
-        border-radius: 0.5rem;
-        background-color: white;
-        top: anchor(top);
-        left: anchor(left);
-        bottom: anchor(bottom);
-        right: anchor(right);
-        z-index:-1;
-        pointer-events: none;
-    }
-    button:hover{
-        anchor-name: --some-achor;
-    }
+.filterNavbar {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  display: flex;
+  width: fit-content;
+  padding: 0.4rem 0rem;
+  background-color: rgba(128, 128, 128, 0.38);
+  button {
+    border-right: 1px solid rgba(128, 128, 128, 0.38);
+    padding: 0.2rem 2rem;
+  }
+  .anchor {
+    position: absolute;
+    position-anchor: --some-achor;
+    border-radius: 0.5rem;
+    background-color: white;
+    top: anchor(top);
+    left: anchor(left);
+    bottom: anchor(bottom);
+    right: anchor(right);
+    z-index: -1;
+    pointer-events: none;
+  }
+  button:hover {
+    anchor-name: --some-achor;
+  }
 }
