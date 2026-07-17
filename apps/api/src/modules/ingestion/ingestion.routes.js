@@ -1,5 +1,5 @@
 import router from "express";
-import { youtubeController, analyzeTrendController } from "./ingestion.controller.js";
+import { youtubeController, analyzeTrendController, tavilyController } from "./ingestion.controller.js";
 
 
 const ingestionRouter = router();
@@ -18,5 +18,7 @@ ingestionRouter.get("/youtube", youtubeController);
  * @access Public
  */
 ingestionRouter.get("/analyze-trend", analyzeTrendController);
+
+ingestionRouter.get("/tavily", tavilyController);
 
 export default ingestionRouter;

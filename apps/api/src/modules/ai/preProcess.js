@@ -1,5 +1,4 @@
 export function preProcessData(data) {
-  console.log("Preprocessing data:", data);
   const aiInput = data.map((item) => ({
     title: item.title,
     text: item.text,

@@ -1,6 +1,7 @@
 import contentModel from "../../db/models/content.model.js";
 import trendAnalysisModel from "../../db/models/trend.model.js";
 import youtubeProvider from "./providers/youtube.provider.js";
+import tavilyProvider from "./providers/tavily.provider.js";
 import { normalizeData } from "./normalization/normalization.js";
 import { generateTrendPost } from "../../modules/ai/ai.service.js";
 
@@ -41,6 +42,23 @@ export async function analyzeTrendController(req, res) {
   } catch (error) {
     res.status(500).json({
       message: "Error analyzing trend",
+      error: error.message,
+    });
+  }
+}
+
+export async function tavilyController(req, res) {
+  try {
+    const result = await tavilyProvider();
+    const normalizedResult = normalizeData(result, "travily");
+    const savedResult = await contentModel.insertMany(normalizedResult);
+    res.status(200).json({
+      message: "Tavily data fetched successfully",
+      savedResult,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching Tavily data",
       error: error.message,
     });
   }

@@ -1,3 +1,4 @@
+import crypto from "crypto";
 export function normalizeData(data, provider) {
   switch (provider) {
     case "youtube":
@@ -22,6 +23,36 @@ export function normalizeData(data, provider) {
         createdAtSource: new Date(item.snippet.publishedAt),
         fetchedAt: new Date(),
       }));
+      breakl;
+    case "travily":
+      return data.results.map((item) => ({
+        platform: provider,
+        postId: crypto.createHash("sha1").update(item.url).digest("hex"),
+        author: null,
+        title: item.title,
+        text: item.raw_content || item.content || "",
+        url: item.url,
+        metrics: {
+          likes: null,
+          comments: null,
+          shares: null,
+          views: null,
+          upvotes: null,
+        },
+        metadata: {
+          score: item.score,
+          content: item.content,
+          images: item.images || [],
+          favicon: item.favicon || null,
+        },
+
+        createdAtSource: item.published_date
+          ? new Date(item.published_date)
+          : null,
+
+        fetchedAt: new Date(),
+      }));
+
     default:
       return [];
   }
