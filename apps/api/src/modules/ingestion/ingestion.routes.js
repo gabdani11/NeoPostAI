@@ -1,5 +1,5 @@
 import router from "express";
-import { youtubeController, analyzeTrendController, tavilyController } from "./ingestion.controller.js";
+import { youtubeController, analyzeTrendController, tavilyController, getTrendAnalysisController } from "./ingestion.controller.js";
 
 
 const ingestionRouter = router();
@@ -19,6 +19,23 @@ ingestionRouter.get("/youtube", youtubeController);
  */
 ingestionRouter.get("/analyze-trend", analyzeTrendController);
 
+/**
+ * @route GET /api/ingestion/tavily
+ * @desc Fetch and save Tavily data
+ * @access Public
+ */
+
 ingestionRouter.get("/tavily", tavilyController);
+/**
+ * @route GET /api/ingestion/get-trend
+ * @desc Get trend analysis from the ingested content using AI
+ * @access Public
+ */
+
+ingestionRouter.get("/get-trend", getTrendAnalysisController);
+
+
+
+
 
 export default ingestionRouter;

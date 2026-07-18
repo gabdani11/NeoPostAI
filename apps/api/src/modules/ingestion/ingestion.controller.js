@@ -63,3 +63,24 @@ export async function tavilyController(req, res) {
     });
   }
 }
+
+export async function getTrendAnalysisController(req, res) {
+  try{
+    const trendAnalysis = await trendAnalysisModel.find();
+    if (!trendAnalysis || trendAnalysis.length === 0) {
+      return res.status(404).json({
+        message: "No trend analysis found",
+      });
+    }
+    res.status(200).json({
+      message: "Trend analysis fetched successfully",
+      trendAnalysis,
+    });
+
+  }catch (error) {
+    res.status(500).json({
+      message: "Error fetching trend analysis",
+      error: error.message,
+    });
+  }
+}
