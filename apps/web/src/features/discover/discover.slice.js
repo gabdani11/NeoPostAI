@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const authSlice = createSlice({
+const discoverSlice = createSlice({
     name:"discover",
     initialState:{
         trend:null,
@@ -24,3 +24,5 @@ const authSlice = createSlice({
 
     }
 })
+export const {setTrend,setLoading,setError,clearError} = discoverSlice.actions
+export default discoverSlice.reducer

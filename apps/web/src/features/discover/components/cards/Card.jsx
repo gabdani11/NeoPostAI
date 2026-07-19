@@ -1,19 +1,17 @@
 import React from "react";
 import "./card.scss";
 
-const Card = () => {
+const Card = (props) => {
+  const { item } = props;
   return (
     <div className="card">
       <div className="top">
-        <h3>Technology</h3>
+        <h3>{item.category.primary}</h3>
         <h3>🔥</h3>
       </div>
       <div className="middle">
-        <h2>10 AI Tools Every Developer Should know in 2026</h2>
-        <p>
-          A curated list of AI tools that help with coding, debugging,
-          documentation, testing, and deployment.
-        </p>
+        <h2>{item.title}</h2>
+        <p>{item.summary}</p>
       </div>
       <div className="bottom">
         <h4>#AI #Programming #Productivity</h4>

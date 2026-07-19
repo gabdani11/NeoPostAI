@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./discover.scss";
 import FilterNavbar from "./components/filter/FilterNavbar";
 import Card from "./components/cards/Card";
+import useDiscover from "./hook/useDiscover";
+import { useDispatch, useSelector } from "react-redux";
 
 const Discover = () => {
+  const { fetchDiscover } = useDiscover();
+  const trend = useSelector((state) => state.discover.trend);
+  
+  useEffect(() => {
+    fetchDiscover();
+  }, []);
   return (
     <div className="discover">
       <div className="heading">
@@ -85,12 +93,7 @@ const Discover = () => {
         <FilterNavbar />
       </div>
       <div className="cardsSection">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {trend?.map((item,index)=><Card key={index} item={item}/>)}
       </div>
     </div>
   );
