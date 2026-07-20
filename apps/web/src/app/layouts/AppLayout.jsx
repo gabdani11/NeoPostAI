@@ -1,22 +1,26 @@
-import React from 'react'
-import {Outlet} from 'react-router-dom'
-import Navbar from './components/navbar/Navbar'
-import SidePanel from './components/navigationSidePanel/SidePanel'
-import './applayout.scss'
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import SidePanel from "./components/navigationSidePanel/SidePanel";
+import "./applayout.scss";
+import useAuth from "../../features/auth/hook/UseAuth";
 const AppLayout = () => {
+  const { fetchCurrentUser } = useAuth();
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
   return (
     <div className="appLayout">
-        <Navbar/>
+      <Navbar />
       <div className="appLayoutBody">
-        <SidePanel/>
+        <SidePanel />
         <main className="appLayoutContent">
-          <Outlet/>
+          <Outlet />
         </main>
       </div>
-      
-
     </div>
-  )
-}
+  );
+};
 
-export default AppLayout
+export default AppLayout;

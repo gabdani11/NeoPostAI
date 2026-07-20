@@ -5,6 +5,7 @@ import Login from "../../features/auth/components/Login";
 import Landing from "../../landing/Landing";
 import AppLayout from "../layouts/AppLayout";
 import Discover from "../../features/discover/Discover";
+import PostEditor from "../../features/postEditor/PostEditor";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "discover",
         element: <Discover />,
+      },
+      {
+        path: "post-editor",
+        element: <PostEditor />,
       },
     ],
   },
