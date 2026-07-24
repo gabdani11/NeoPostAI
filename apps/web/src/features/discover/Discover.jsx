@@ -4,6 +4,7 @@ import FilterNavbar from "./components/filter/FilterNavbar";
 import Card from "./components/cards/Card";
 import useDiscover from "./hook/useDiscover";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/ui/Loading.jsx";
 
 const Discover = () => {
   const { fetchDiscover } = useDiscover();
@@ -22,9 +23,14 @@ const Discover = () => {
         <FilterNavbar />
       </div>
       <div className="cardsSection">
-        {trend?.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
+        {trend
+         ? (
+          trend.map((item, index) => <Card key={index} item={item} />)
+        ) : (
+          <div className="loading">
+            <Loading />
+          </div>
+        )}
       </div>
     </div>
   );

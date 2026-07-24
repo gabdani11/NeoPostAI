@@ -1,8 +1,15 @@
 import React from "react";
 import "./card.scss";
-
+import { setPostContent } from "../../../postEditor/postEditor.slice";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 const Card = (props) => {
+  const dispatch = useDispatch();
   const { item } = props;
+
+  function handleCreatePost() {
+    dispatch(setPostContent(item));
+  }
   return (
     <div className="card">
       <div className="top">
@@ -14,8 +21,10 @@ const Card = (props) => {
         <p>{item.summary}</p>
       </div>
       <div className="bottom">
-        <h4>#AI #Programming #Productivity</h4>
-        <button>Create</button>
+        <h4>{item.hashtags}</h4>
+        <button onClick={handleCreatePost}>
+          <Link to="/app/post-editor">Create</Link>
+        </button>
       </div>
     </div>
   );
